@@ -1,7 +1,9 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import React from 'react';
+
+import type {NextPage} from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   return (
@@ -64,12 +66,10 @@ const Home: NextPage = () => {
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
+        <h1 className="text-3xl font-bold underline">Hello world!</h1>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
