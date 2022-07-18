@@ -19,5 +19,19 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint'],
-  rules: {},
+  rules: {
+    'object-curly-spacing': ['error', 'always'],
+    'indent': ['error', 2],
+    'spaced-comment': ['error', 'always', {
+      'line': {
+        'markers': ['/'],
+        'exceptions': ['-', '+'],
+      },
+      'block': {
+        'markers': ['!'],
+        'exceptions': ['*'],
+        'balanced': true,
+      },
+    }],
+  },
 };
