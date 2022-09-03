@@ -12,7 +12,6 @@ const useStyles = createStyles((theme) => {
   return {
     banner: {
       border: '1px solid red',
-      minWidth: '100vh',
       display: 'flex',
       flexDirection: theme.fn.largerThan('md') ? 'row' : 'column',
     },
