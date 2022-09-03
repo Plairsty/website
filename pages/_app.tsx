@@ -7,7 +7,9 @@ import {
   MantineProvider,
 } from '@mantine/core';
 
-import { setCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next';
+import { GetServerSidePropsContext } from 'next/types';
+import { useHotkeys } from '@mantine/hooks';
 /**
  * @param {AppProps} props The Component and Page props.
  * @return {JSX.Element}
@@ -18,7 +20,7 @@ function MyApp(props: AppProps & { colorScheme: ColorScheme }): JSX.Element {
     props.colorScheme,
   );
 
-  const toogleColorScheme = (value?: ColorScheme) => {
+  const toggleColorScheme = (value?: ColorScheme) => {
     const nextColorScheme =
       value || (colorScheme === 'dark' ? 'light' : 'dark');
     setColorScheme(nextColorScheme);
@@ -27,10 +29,16 @@ function MyApp(props: AppProps & { colorScheme: ColorScheme }): JSX.Element {
     });
   };
 
+  useHotkeys([
+    ['mod+J', () => toggleColorScheme()],
+    ['ctrl+K', () => console.log('Trigger search')],
+    ['/', () => console.log('Trigger search')],
+  ]);
+
   return (
     <ColorSchemeProvider
       colorScheme={colorScheme}
-      toggleColorScheme={toogleColorScheme}
+      toggleColorScheme={toggleColorScheme}
     >
       <MantineProvider
         theme={{ colorScheme }}
@@ -42,5 +50,10 @@ function MyApp(props: AppProps & { colorScheme: ColorScheme }): JSX.Element {
     </ColorSchemeProvider>
   );
 }
+
+MyApp.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
+  // get color scheme from cookie
+  colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
+});
 
 export default MyApp;
