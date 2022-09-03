@@ -22,6 +22,7 @@ module.exports = {
     rules: {
         'object-curly-spacing': ['error', 'always'],
         'indent': 'off',
+        'quote-props': 'off',
         'operator-linebreak': 'off',
         'spaced-comment': ['error', 'always', {
             'line': {
