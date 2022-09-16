@@ -4,29 +4,12 @@ import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import Header from '../components/Header/header';
-import Footer from '../components/Footer/footer';
-import { Container, createStyles } from '@mantine/core';
-import { Image } from '@mantine/core';
-const useStyles = createStyles((theme) => {
-  return {
-    banner: {
-      border: '1px solid red',
-      display: 'flex',
-      flexDirection: theme.fn.largerThan('md') ? 'row' : 'column',
-    },
-    content: {
-      width: '75%',
-      border: '1px solid black',
-    },
-    bannerImage: {},
-  };
-});
-const Home: NextPage = () => {
-  const imageUrl =
-    'https://images.unsplash.com/uploads/141103282695035fa1380/95cdfeef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1730&q=80';
+import Header from '../components/landing_page/header';
+import Footer from '../components/landing_page/footer';
 
-  const { classes } = useStyles();
+import MainContent from '../components/landing_page/main_content';
+
+const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -37,8 +20,8 @@ const Home: NextPage = () => {
       <Header
         links={[
           {
-            link: 'google.com',
-            label: 'Features',
+            link: '/login',
+            label: 'Login',
           },
           {
             link: '',
@@ -51,20 +34,7 @@ const Home: NextPage = () => {
         ]}
       />
 
-      <Container className={classes.banner}>
-        {/* Left */}
-        <Container className={classes.content}>
-          Get yourself a job with
-          <strong>Plairsty</strong>
-        </Container>
-        {/* Right */}
-        <Image
-          radius="md"
-          src={imageUrl}
-          alt="Random unsplash image"
-          className={classes.bannerImage}
-        />
-      </Container>
+      <MainContent />
 
       <Footer
         links={[
@@ -90,7 +60,6 @@ const Home: NextPage = () => {
           },
         ]}
       />
-      <h1>About</h1>
     </div>
   );
 };

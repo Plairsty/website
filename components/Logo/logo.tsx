@@ -1,4 +1,4 @@
-import image from '../../public/vercel.svg';
+import image from '../../public/plairsty.svg';
 
 import React from 'react';
 import Image from 'next/image';
@@ -6,7 +6,7 @@ import Image from 'next/image';
 const logo = () => {
   return (
     <div>
-      <Image src={image} width={100} />
+      <Image src={image} width={75} height={75} />
     </div>
   );
 };

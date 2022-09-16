@@ -8,6 +8,7 @@ import {
   Transition,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import Logo from '../Logo/logo';
 const HEADER_HEIGHT = 60;
@@ -99,20 +100,23 @@ const header = ({ links }: HeaderResponsiveProps) => {
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
   const items = links.map((link) => (
-    <a
-      key={link.label}
+    <Link
       href={link.link}
-      className={cx(classes.link, {
-        [classes.linkActive]: active === link.link,
-      })}
+      key={link.label}
       onClick={(event) => {
         event.preventDefault();
         setActive(link.link);
         close();
       }}
     >
-      {link.label}
-    </a>
+      <a
+        className={cx(classes.link, {
+          [classes.linkActive]: active === link.link,
+        })}
+      >
+        {link.label}
+      </a>
+    </Link>
   ));
 
   return (
