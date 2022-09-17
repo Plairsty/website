@@ -1,6 +1,6 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ColorScheme,
   ColorSchemeProvider,
@@ -8,7 +8,6 @@ import {
 } from '@mantine/core';
 
 import { getCookie, setCookie } from 'cookies-next';
-import { GetServerSidePropsContext } from 'next/types';
 import { useHotkeys } from '@mantine/hooks';
 /**
  * @param {AppProps} props The Component and Page props.
@@ -35,6 +34,14 @@ function MyApp(props: AppProps & { colorScheme: ColorScheme }): JSX.Element {
     ['/', () => console.log('Trigger search')],
   ]);
 
+  // Check cookie on mount for color scheme
+  useEffect(() => {
+    const cookie = getCookie('mantine-color-scheme');
+    if (cookie) {
+      setColorScheme(cookie as ColorScheme);
+    }
+  }, []);
+
   return (
     <ColorSchemeProvider
       colorScheme={colorScheme}
@@ -50,10 +57,5 @@ function MyApp(props: AppProps & { colorScheme: ColorScheme }): JSX.Element {
     </ColorSchemeProvider>
   );
 }
-
-MyApp.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
-  // get color scheme from cookie
-  colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
-});
 
 export default MyApp;
