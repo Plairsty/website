@@ -100,19 +100,15 @@ const header = ({ links }: HeaderResponsiveProps) => {
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
   const items = links.map((link) => (
-    <Link
-      href={link.link}
-      key={link.label}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(link.link);
-        close();
-      }}
-    >
+    <Link href={link.link} key={link.label}>
       <a
         className={cx(classes.link, {
           [classes.linkActive]: active === link.link,
         })}
+        onClick={() => {
+          setActive(link.link);
+          close();
+        }}
       >
         {link.label}
       </a>
