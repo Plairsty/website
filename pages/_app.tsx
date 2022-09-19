@@ -30,7 +30,6 @@ function MyApp(props: AppProps & { colorScheme: ColorScheme }): JSX.Element {
 
   useHotkeys([
     ['mod+J', () => toggleColorScheme()],
-    ['ctrl+K', () => console.log('Trigger search')],
     ['/', () => console.log('Trigger search')],
   ]);
 
