@@ -9,7 +9,7 @@ const dashboard = () => {
   const [modelOpened, setModelOpened] = React.useState(false);
 
   const componentExecutor = (currentIndex: number) => {
-    return mockdata[currentIndex].label;
+    return mockdata[currentIndex].component;
   };
   useHotkeys([
     [
