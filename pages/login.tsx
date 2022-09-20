@@ -105,7 +105,7 @@ const AuthenticationImage = () => {
           <Checkbox
             label="Keep me logged in"
             mt="xl"
-            size="md"
+            size="xs"
             {...form.getInputProps('remember')}
           />
           <Button
