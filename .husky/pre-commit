@@ -27,6 +27,14 @@ yarn check-types ||
     false;
 )
 
+# # Check Jest standards
+# yarn test ||
+# {
+#     echo '🤢🤮🤢🤮 Seriously? - Your tests are not passing. 🤢🤮🤢🤮
+#     Check your implmentation, write tests and try commit again.'
+#     false;
+# }
+
 # If everything passes... Now we can commit
 echo '🤔🤔🤔🤔... Alright... Code looks good to me... Trying to build now. 🤔🤔🤔🤔'
 
