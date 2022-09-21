@@ -22,7 +22,8 @@ export default async function handler(
     res.end();
     return;
   }
-  const { username, password } = req.body;
+  const username = JSON.parse(req.body).username;
+  const password = JSON.parse(req.body).password;
   const client = new auth.AuthServiceClient(
     'localhost:8080',
     credentials.createInsecure(),
@@ -38,7 +39,6 @@ export default async function handler(
       if (err) {
         res.status(400);
       } else {
-        console.log('Response: ' + res);
         res.status(200).json({
           access_token: response?.access_token ? response?.access_token : '',
           refresh_token: response?.refresh_token ? response?.refresh_token : '',
@@ -47,4 +47,5 @@ export default async function handler(
     },
   );
   client.close();
+  console.log('client closed');
 }

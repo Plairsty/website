@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable max-len */
+/* eslint-disable require-jsdoc */
+import React, { useContext, useState } from 'react';
 import parseJwt from '../utils/parse-jwt';
 
 type AuthTokens = {
@@ -10,6 +12,9 @@ type AuthContext = {
   authState: AuthTokens;
   setAuthState: (userAuthInfo: AuthTokens) => void;
   isUserAuthenticated: () => boolean;
+  login: (accessToken: string, refreshToken: string) => void;
+  logout: () => void;
+  user: boolean;
 };
 const AuthContext = React.createContext<AuthContext>({
   authState: {
@@ -18,11 +23,21 @@ const AuthContext = React.createContext<AuthContext>({
   },
   setAuthState: (userAuthInfo: AuthTokens) => {},
   isUserAuthenticated: () => false,
+  login: () => {},
+  logout: () => {},
+  user: false,
 });
+// New
+export function useAuth() {
+  return useContext(AuthContext);
+}
 
-const { Provider } = AuthContext;
+type Props = {
+  children: React.ReactNode;
+};
 
-const AuthProvider = (children: React.ReactNode) => {
+export function AuthProvider({ children }: Props) {
+  const [user, setUser] = useState<boolean>(false);
   const [authState, setAuthState] = React.useState({
     accessToken: '',
     refreshToken: '',
@@ -35,15 +50,13 @@ const AuthProvider = (children: React.ReactNode) => {
       refreshToken: data.refreshToken,
     });
   };
-
   const isUserAuthenticated = () => {
-    if (!authState.accessToken || !authState.refreshToken) {
+    const accessToken = localStorage.getItem('access_token');
+    const refreshToken = localStorage.getItem('refresh_token');
+    if (!accessToken && !refreshToken) {
       return false;
     }
-    if (
-      isTokenExpired(authState.accessToken) ||
-      isTokenExpired(authState.refreshToken)
-    ) {
+    if (isTokenExpired(accessToken!) || isTokenExpired(refreshToken!)) {
       return false;
     }
     return true;
@@ -57,18 +70,31 @@ const AuthProvider = (children: React.ReactNode) => {
     }
     return false;
   };
+  const login = (accessToken: string, refreshToken: string) => {
+    setUser(true);
+    setUserAuthInfo({
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+    });
+    console.log('Success');
+  };
+  const logout = () => {
+    setUser(false);
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+  };
 
+  const value = {
+    authState,
+    setAuthState: setUserAuthInfo,
+    isUserAuthenticated,
+    login,
+    logout,
+    user,
+  };
   return (
-    <Provider
-      value={{
-        authState,
-        setAuthState: (userAuthInfo: AuthTokens) =>
-          setUserAuthInfo(userAuthInfo),
-        isUserAuthenticated,
-      }}
-    >
-      {children}
-    </Provider>
+    <>
+      <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+    </>
   );
-};
-export { AuthContext, AuthProvider };
+}

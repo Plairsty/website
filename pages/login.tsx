@@ -3,7 +3,6 @@ import {
   createStyles,
   TextInput,
   PasswordInput,
-  Checkbox,
   Button,
   Title,
   Text,
@@ -11,8 +10,9 @@ import {
   Modal,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-
-import React, { useState } from 'react';
+import router from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../context/auth_context';
 const useStyles = createStyles((theme) => ({
   wrapper: {
     minHeight: 900,
@@ -51,27 +51,50 @@ const useStyles = createStyles((theme) => ({
 
 const AuthenticationImage = () => {
   const [modelOpened, setModelOpened] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const { login, isUserAuthenticated } = useAuth();
+  const onSubmit = () => {
+    fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((res) => res.text())
+      .then((data) => {
+        login(
+          JSON.parse(data)['access_token'],
+          JSON.parse(data)['refresh_token'],
+        );
+        router.push('/dashboard');
+      });
+  };
 
   const { classes } = useStyles();
   const form = useForm({
     initialValues: {
       username: '',
       password: '',
-      remember: false,
     },
     validate: {
-      username: (value) => (value.length > 6 ? null : 'Invalid username'),
+      // username: (value) => (value.length > 6 ? null : 'Invalid username'),
     },
   });
+
+  useEffect(() => {
+    isUserAuthenticated() ? router.push('/dashboard') : null;
+  }, []);
   return (
     <div className={classes.wrapper}>
       <Modal
         centered
         opened={modelOpened}
         onClose={() => setModelOpened(false)}
-        title="Introduce yourself!"
+        title="Whatever!"
       >
-        Karma is a Bitch!
+        WOrking
       </Modal>
       <Paper className={classes.form} radius={0} p={30}>
         <Title
@@ -86,7 +109,9 @@ const AuthenticationImage = () => {
 
         <form
           onSubmit={form.onSubmit((values) => {
-            console.log(values);
+            setUsername(values.username);
+            setPassword(values.password);
+            onSubmit();
           })}
         >
           <TextInput
@@ -101,12 +126,6 @@ const AuthenticationImage = () => {
             mt="md"
             size="md"
             {...form.getInputProps('password')}
-          />
-          <Checkbox
-            label="Keep me logged in"
-            mt="xl"
-            size="xs"
-            {...form.getInputProps('remember')}
           />
           <Button
             fullWidth

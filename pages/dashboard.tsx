@@ -4,13 +4,12 @@ import { NavbarMinimal } from '../components/navbar/navbar';
 import { mockdata } from '../components/data/nav_data';
 import { useHotkeys } from '@mantine/hooks';
 import router from 'next/router';
-import { AuthContext } from '../context/auth_context';
+import { useAuth } from '../context/auth_context';
 
 const dashboard = () => {
   const [active, setActive] = React.useState(0);
   const [modelOpened, setModelOpened] = React.useState(false);
-  const authContext = React.useContext(AuthContext);
-  const { isUserAuthenticated } = authContext;
+  const { isUserAuthenticated } = useAuth();
 
   const componentExecutor = (currentIndex: number) => {
     return mockdata[currentIndex].component;
