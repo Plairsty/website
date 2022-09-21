@@ -5,7 +5,6 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Header from '../components/landing_page/header';
-import Footer from '../components/landing_page/footer';
 import { useAuth } from '../context/auth_context';
 import router from 'next/router';
 import { useEffect } from 'react';
@@ -37,8 +36,7 @@ const Home: NextPage = () => {
       />
 
       <MainContent />
-
-      <Footer
+      {/* <Footer
         links={[
           {
             link: '#',
@@ -49,7 +47,7 @@ const Home: NextPage = () => {
             label: 'Privacy',
           },
         ]}
-      />
+      /> */}
     </div>
   );
 };
