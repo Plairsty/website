@@ -8,12 +8,12 @@ interface props {
 const layoutHome = ({ children }: props) => {
   const { user } = useAuth();
   return (
-    <>
-      <Text size="xl" weight="bold" p="sm">
+    <div className="">
+      <Text size="xl" weight="bold" p="md">
         Hello {user}!
       </Text>
       {children}
-    </>
+    </div>
   );
 };
 

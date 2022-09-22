@@ -36,18 +36,6 @@ const Home: NextPage = () => {
       />
 
       <MainContent />
-      {/* <Footer
-        links={[
-          {
-            link: '#',
-            label: 'Contact',
-          },
-          {
-            link: '#',
-            label: 'Privacy',
-          },
-        ]}
-      /> */}
     </div>
   );
 };

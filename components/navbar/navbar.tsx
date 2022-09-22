@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Center, Stack } from '@mantine/core';
+import { Navbar, Center, Stack, createStyles } from '@mantine/core';
 import { IconLogout, TablerIcon } from '@tabler/icons';
 import NavbarLink from './navbar_links';
 import Logo from '../Logo/logo';
@@ -16,6 +16,23 @@ type NavBarProps = {
   logout: () => void;
 };
 
+const useStyles = createStyles((theme) => {
+  return {
+    navbar: {
+      backgroundColor: theme.colorScheme === 'dark' ? '#1c1c1c' : '#fff',
+      color: theme.colorScheme === 'dark' ? '#fff' : '#000',
+      minHeight: 100,
+      padding: 'md',
+      width: 80,
+
+      [theme.fn.smallerThan('sm')]: {
+        width: 70,
+        padding: 'xs',
+      },
+    },
+  };
+});
+
 /**
  * Navbar component.
  * @param {data} active - The active state of the navbar
@@ -28,6 +45,7 @@ export function NavbarMinimal({
   data,
   logout,
 }: NavBarProps): React.ReactElement {
+  const { classes } = useStyles();
   const links = data.map((link, index) => (
     <NavbarLink
       {...link}
@@ -38,7 +56,13 @@ export function NavbarMinimal({
   ));
 
   return (
-    <Navbar width={{ base: 80 }} p="md" className="min-h-max">
+    <Navbar
+      width={{
+        base: 80,
+      }}
+      p="md"
+      className={classes.navbar}
+    >
       <Center>
         <Logo />
       </Center>
