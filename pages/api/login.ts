@@ -38,6 +38,7 @@ export default async function handler(
     (err, response) => {
       if (err) {
         res.status(400);
+        res.end();
       } else {
         res.status(200).json({
           access_token: response?.access_token ? response?.access_token : '',

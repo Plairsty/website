@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
+import Router from 'next/router';
 import React, { useContext, useState } from 'react';
 import parseJwt from '../utils/parse-jwt';
 
@@ -14,7 +15,7 @@ type AuthContext = {
   isUserAuthenticated: () => boolean;
   login: (accessToken: string, refreshToken: string) => void;
   logout: () => void;
-  user: boolean;
+  user: string;
   role: string;
 };
 const AuthContext = React.createContext<AuthContext>({
@@ -26,7 +27,7 @@ const AuthContext = React.createContext<AuthContext>({
   isUserAuthenticated: () => false,
   login: () => {},
   logout: () => {},
-  user: false,
+  user: '',
   role: 'user',
 });
 // New
@@ -39,7 +40,7 @@ type Props = {
 };
 
 export function AuthProvider({ children }: Props) {
-  const [user, setUser] = useState<boolean>(false);
+  const [user, setUser] = useState<string>('');
   const [role, setRole] = useState<string>('user');
   const [authState, setAuthState] = React.useState({
     accessToken: '',
@@ -59,34 +60,44 @@ export function AuthProvider({ children }: Props) {
     if (!accessToken && !refreshToken) {
       return false;
     }
-    if (isTokenExpired(accessToken!) || isTokenExpired(refreshToken!)) {
+    if (isTokenExpired(refreshToken!)) {
       return false;
     }
+    if (isTokenExpired(accessToken!)) {
+      // TODO: Refresh token
+      return false;
+    }
+
     return true;
   };
 
   const isTokenExpired = (token: string) => {
     const decodedToken = parseJwt(token);
-    // Check the role
-    setRole(decodedToken.role);
     const currentTime = new Date().getTime() / 1000;
     if (decodedToken.exp < currentTime) {
       return true;
     }
+    // Check the role
+    setRole(decodedToken.role);
+    // set the user
+    setUser(decodedToken.username);
     return false;
   };
   const login = (accessToken: string, refreshToken: string) => {
-    setUser(true);
+    // Bug here! Any token is valid
+    // Implement signing key checks to verify the token
     setUserAuthInfo({
       accessToken: accessToken,
       refreshToken: refreshToken,
     });
-    console.log('Success');
   };
   const logout = () => {
-    setUser(false);
+    setUser('');
+    setRole('user');
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    console.log('Logged out');
+    Router.reload();
   };
 
   const value = {

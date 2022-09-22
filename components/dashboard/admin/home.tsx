@@ -9,7 +9,8 @@ import {
 } from '@mantine/core';
 import { IconArrowUpRight, IconDeviceAnalytics } from '@tabler/icons';
 import React from 'react';
-import StudentList from '../home/students-list';
+import StudentTable from './students-list';
+import studentData from './temp-data';
 const useStyles = createStyles((theme) => ({
   progressLabel: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
@@ -40,17 +41,6 @@ const useStyles = createStyles((theme) => ({
         : theme.colors.gray[4],
   },
 }));
-
-// interface StatsSegmentsProps {
-//   total: string;
-//   diff: number;
-//   data: {
-//     label: string;
-//     count: string;
-//     part: number;
-//     color: string;
-//   }[];
-// }
 
 const home = () => {
   const total = '375,560';
@@ -130,9 +120,8 @@ const home = () => {
             stroke={1.5}
           />
         </Group>
-
-        <Text color="dimmed" size="sm">
-          Page views compared to previous month
+        <Text size="sm" color="dimmed" weight={700}>
+          Total Users
         </Text>
 
         <Progress
@@ -151,7 +140,7 @@ const home = () => {
       </Paper>
       {/* Table */}
       <Paper withBorder p="xl" radius="md" mt="sm">
-        <StudentList />
+        <StudentTable data={studentData.data} />
       </Paper>
     </>
   );

@@ -1,26 +1,34 @@
 import React from 'react';
 import { Navbar, Center, Stack } from '@mantine/core';
-import { IconLogout } from '@tabler/icons';
+import { IconLogout, TablerIcon } from '@tabler/icons';
 import NavbarLink from './navbar_links';
 import Logo from '../Logo/logo';
 import { ColorSchemeToogle } from '../Theme/ColorSchemeToogle';
-import { adminData } from '../dashboard/admin-component';
 
-interface NavbarMinimalProps {
+type NavBarProps = {
   active: number;
   setActive: React.Dispatch<React.SetStateAction<number>>;
-}
+  data: {
+    icon: TablerIcon;
+    label: string;
+    component: JSX.Element;
+  }[];
+  logout: () => void;
+};
 
 /**
  * Navbar component.
- * @param {number} active - The active state of the navbar.
+ * @param {data} active - The active state of the navbar
+ * and the component to be rendered.
  * @return {React.ReactElement} - The NavbarLink component.
  */
 export function NavbarMinimal({
   active,
   setActive,
-}: NavbarMinimalProps): React.ReactElement {
-  const links = adminData.map((link, index) => (
+  data,
+  logout,
+}: NavBarProps): React.ReactElement {
+  const links = data.map((link, index) => (
     <NavbarLink
       {...link}
       key={link.label}
@@ -42,7 +50,7 @@ export function NavbarMinimal({
       <Navbar.Section>
         <Stack justify="center" spacing={0}>
           <ColorSchemeToogle />
-          <NavbarLink icon={IconLogout} label="Logout" />
+          <NavbarLink icon={IconLogout} label="Logout" onClick={logout} />
         </Stack>
       </Navbar.Section>
     </Navbar>

@@ -64,11 +64,15 @@ const AuthenticationImage = () => {
     })
       .then((res) => res.text())
       .then((data) => {
-        login(
-          JSON.parse(data)['access_token'],
-          JSON.parse(data)['refresh_token'],
-        );
-        router.push('/dashboard');
+        try {
+          login(
+            JSON.parse(data)['access_token'],
+            JSON.parse(data)['refresh_token'],
+          );
+          isUserAuthenticated() ? router.push('/dashboard') : null;
+        } catch (e) {
+          console.log(e);
+        }
       });
   };
 
