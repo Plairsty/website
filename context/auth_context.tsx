@@ -15,6 +15,7 @@ type AuthContext = {
   login: (accessToken: string, refreshToken: string) => void;
   logout: () => void;
   user: boolean;
+  role: string;
 };
 const AuthContext = React.createContext<AuthContext>({
   authState: {
@@ -26,6 +27,7 @@ const AuthContext = React.createContext<AuthContext>({
   login: () => {},
   logout: () => {},
   user: false,
+  role: 'user',
 });
 // New
 export function useAuth() {
@@ -38,6 +40,7 @@ type Props = {
 
 export function AuthProvider({ children }: Props) {
   const [user, setUser] = useState<boolean>(false);
+  const [role, setRole] = useState<string>('user');
   const [authState, setAuthState] = React.useState({
     accessToken: '',
     refreshToken: '',
@@ -64,6 +67,8 @@ export function AuthProvider({ children }: Props) {
 
   const isTokenExpired = (token: string) => {
     const decodedToken = parseJwt(token);
+    // Check the role
+    setRole(decodedToken.role);
     const currentTime = new Date().getTime() / 1000;
     if (decodedToken.exp < currentTime) {
       return true;
@@ -91,6 +96,7 @@ export function AuthProvider({ children }: Props) {
     login,
     logout,
     user,
+    role,
   };
   return (
     <>

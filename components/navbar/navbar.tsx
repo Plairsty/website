@@ -4,7 +4,7 @@ import { IconLogout } from '@tabler/icons';
 import NavbarLink from './navbar_links';
 import Logo from '../Logo/logo';
 import { ColorSchemeToogle } from '../Theme/ColorSchemeToogle';
-import { mockdata } from '../data/nav_data';
+import { adminData } from '../dashboard/admin-component';
 
 interface NavbarMinimalProps {
   active: number;
@@ -20,7 +20,7 @@ export function NavbarMinimal({
   active,
   setActive,
 }: NavbarMinimalProps): React.ReactElement {
-  const links = mockdata.map((link, index) => (
+  const links = adminData.map((link, index) => (
     <NavbarLink
       {...link}
       key={link.label}

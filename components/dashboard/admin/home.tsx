@@ -9,7 +9,7 @@ import {
 } from '@mantine/core';
 import { IconArrowUpRight, IconDeviceAnalytics } from '@tabler/icons';
 import React from 'react';
-import StudentList from './home/students-list';
+import StudentList from '../home/students-list';
 const useStyles = createStyles((theme) => ({
   progressLabel: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,

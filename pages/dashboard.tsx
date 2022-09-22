@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppShell, Modal, TextInput } from '@mantine/core';
 import { NavbarMinimal } from '../components/navbar/navbar';
-import { mockdata } from '../components/data/nav_data';
+import { adminData } from '../components/dashboard/admin-component';
 import { useHotkeys } from '@mantine/hooks';
 import router from 'next/router';
 import { useAuth } from '../context/auth_context';
@@ -12,7 +12,7 @@ const dashboard = () => {
   const { isUserAuthenticated } = useAuth();
 
   const componentExecutor = (currentIndex: number) => {
-    return mockdata[currentIndex].component;
+    return adminData[currentIndex].component;
   };
   useHotkeys([
     [
@@ -22,7 +22,11 @@ const dashboard = () => {
   ]);
 
   React.useEffect(() => {
-    isUserAuthenticated() ? router.push('/dashboard') : router.push('/');
+    isUserAuthenticated()
+      ? () => {
+          console.log('user is authenticated');
+        }
+      : router.push('/');
   }, []);
 
   return (
