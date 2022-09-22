@@ -5,11 +5,16 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Header from '../components/landing_page/header';
-import Footer from '../components/landing_page/footer';
-
+import { useAuth } from '../context/auth_context';
+import router from 'next/router';
+import { useEffect } from 'react';
 import MainContent from '../components/landing_page/main_content';
 
 const Home: NextPage = () => {
+  const { isUserAuthenticated } = useAuth();
+  useEffect(() => {
+    isUserAuthenticated() ? router.push('/dashboard') : null;
+  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -25,18 +30,13 @@ const Home: NextPage = () => {
           },
           {
             link: '',
-            label: 'Pricing',
-          },
-          {
-            link: '',
             label: 'About',
           },
         ]}
       />
 
       <MainContent />
-
-      <Footer
+      {/* <Footer
         links={[
           {
             link: '#',
@@ -46,20 +46,8 @@ const Home: NextPage = () => {
             link: '#',
             label: 'Privacy',
           },
-          {
-            link: '#',
-            label: 'Blog',
-          },
-          {
-            link: '#',
-            label: 'Store',
-          },
-          {
-            link: '#',
-            label: 'Careers',
-          },
         ]}
-      />
+      /> */}
     </div>
   );
 };

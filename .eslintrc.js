@@ -24,6 +24,7 @@ module.exports = {
         'indent': 'off',
         'quote-props': 'off',
         'operator-linebreak': 'off',
+        'space-before-function-paren': 'off',
         'spaced-comment': ['error', 'always', {
             'line': {
                 'markers': ['/'],

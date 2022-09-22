@@ -5,13 +5,13 @@ import {
   IconUser,
   IconSettings,
 } from '@tabler/icons';
-import Home from './home';
-import Analytics from './analytics';
-import Account from './account';
-import Releases from './releases';
-import Settings from './settings';
+import Home from './admin/home';
+import Analytics from './admin/analytics';
+import Account from './admin/account';
+import Releases from './admin/releases';
+import Settings from './admin/settings';
 import React from 'react';
-export const mockdata = [
+export const adminData = [
   {
     icon: IconHome2,
     label: 'Dashboard',
