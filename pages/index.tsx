@@ -9,7 +9,6 @@ import { useAuth } from '../context/auth_context';
 import router from 'next/router';
 import { useEffect } from 'react';
 import MainContent from '../components/landing_page/main_content';
-
 const Home: NextPage = () => {
   const { isUserAuthenticated } = useAuth();
   useEffect(() => {

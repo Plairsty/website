@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppShell, Modal, TextInput } from '@mantine/core';
+import { AppShell, Modal, TextInput, LoadingOverlay } from '@mantine/core';
 import { NavbarMinimal } from '../components/navbar/navbar';
 import { adminData } from '../components/dashboard/admin-component';
 import { useHotkeys } from '@mantine/hooks';
@@ -10,20 +10,20 @@ import { studentData } from '../components/dashboard/student-component';
 import HomeLayout from '../layout/home.layout';
 const dashboard = () => {
   const [active, setActive] = React.useState(0);
+  const [visible, setVisible] = React.useState(true);
   const [modelOpened, setModelOpened] = React.useState(false);
   const { isUserAuthenticated, role, logout } = useAuth();
 
   const componentExecutor = (currentIndex: number) => {
-    switch (role) {
-      case 'admin':
-        return adminData[currentIndex].component;
-      case 'hr':
-        return hrData[currentIndex].component;
-      case 'user':
-        return studentData[currentIndex].component;
-      default:
-        // Reload animation
-        return <div>Reload</div>;
+    const roles = {
+      admin: adminData[currentIndex].component,
+      hr: hrData[currentIndex].component,
+      user: studentData[currentIndex].component,
+    };
+    for (const [key, value] of Object.entries(roles)) {
+      if (key === role) {
+        return value;
+      }
     }
   };
 
@@ -35,6 +35,7 @@ const dashboard = () => {
   ]);
 
   React.useEffect(() => {
+    setVisible(false);
     isUserAuthenticated()
       ? () => {
           console.log('user is authenticated');
@@ -71,6 +72,7 @@ const dashboard = () => {
           },
         })}
       >
+        <LoadingOverlay visible={visible} overlayBlur={2} />
         <HomeLayout>{componentExecutor(active)}</HomeLayout>
       </AppShell>
     </>

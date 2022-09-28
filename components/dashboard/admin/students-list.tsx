@@ -1,14 +1,21 @@
 import React from 'react';
-import { Avatar, Group, Table, Text, Anchor, ActionIcon } from '@mantine/core';
-import { IconPencil, IconTrash } from '@tabler/icons';
+import {
+  Avatar,
+  Group,
+  Table,
+  Text,
+  Anchor,
+} from '@mantine/core';
 interface UsersTableProps {
-  data: {
-    avatar: string;
-    name: string;
-    moodle: number;
-    email: string;
-    phone: string;
-  }[];
+  data: data[];
+}
+
+interface data {
+  avatar: string;
+  name: string;
+  moodle: number;
+  email: string;
+  phone: string;
 }
 
 const StudentTable = ({ data }: UsersTableProps) => {
@@ -16,15 +23,17 @@ const StudentTable = ({ data }: UsersTableProps) => {
     <>
       <tr key={element.name}>
         <td>
+          <a href={`/profile/${element.moodle}`} key={element.moodle}>
           <Group spacing="sm">
-            <Avatar size={30} src={element.avatar} radius={30} />
+              <Avatar size={30} src={element.avatar} radius={30} />
             <Text size="sm" weight={500}>
               {element.name}
             </Text>
           </Group>
+          </a>
         </td>
 
-        <td>
+        <td className=''>
           <Text size="sm" weight={500}>
             {element.moodle}
           </Text>
@@ -44,16 +53,6 @@ const StudentTable = ({ data }: UsersTableProps) => {
             {element.phone}
           </Text>
         </td>
-        <td>
-          <Group spacing={0} position="right">
-            <ActionIcon>
-              <IconPencil size={16} stroke={1.5} />
-            </ActionIcon>
-            <ActionIcon color="red">
-              <IconTrash size={16} stroke={1.5} />
-            </ActionIcon>
-          </Group>
-        </td>
       </tr>
     </>
   ));
@@ -65,7 +64,6 @@ const StudentTable = ({ data }: UsersTableProps) => {
             <th>Name</th>
             <th>Moodle</th>
             <th>Email</th>
-            <th>Phone</th>
             <th>Phone</th>
             <th />
           </tr>

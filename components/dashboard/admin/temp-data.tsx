@@ -2,91 +2,81 @@ const tempData = {
   data: [
     {
       avatar:
-        'https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
-      name: 'Robert Wolfkisser',
+        'https://admission.apsit.org.in/cloud/id/cloud/student/photos/20104/20104085.jpg',
+      name: 'Gulshan Yadav',
       moodle: 20104085,
-      email: 'rob_wolf@gmail.com',
+      email: 'gulshan@duck.com',
       phone: '+44 (452) 886 09 12',
     },
     {
       avatar:
-        'https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
-      name: 'Jill Jailbreaker',
-      moodle: 20104085,
-      email: 'jj@breaker.com',
+        'https://admission.apsit.org.in/cloud/id/cloud/student/photos/20104/20104002.jpg',
+
+      name: 'Vaishnavi Shinde',
+      moodle: 20104002,
+      email: 'gulshan@duck.com',
       phone: '+44 (934) 777 12 76',
     },
     {
       avatar:
-        'https://images.unsplash.com/photo-1632922267756-9b71242b1592?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
-      name: 'Henry Silkeater',
-      moodle: 20104093,
-      email: 'henry@silkeater.io',
-      phone: '+44 (901) 384 88 34',
-    },
-    {
-      avatar:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
-      name: 'Bill Horsefighter',
-      moodle: 20104093,
-      email: 'bhorsefighter@gmail.com',
+        'https://admission.apsit.org.in/cloud/id/cloud/student/photos/20104/20104045.jpg',
+
+      name: 'Gandharvi Walavekar',
+      moodle: 20104045,
+      email: 'gulshan@duck.com',
       phone: '+44 (667) 341 45 22',
     },
     {
       avatar:
-        'https://images.unsplash.com/photo-1630841539293-bd20634c5d72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
-      name: 'Jeremy Footviewer',
-      moodle: 20104093,
-      email: 'jeremy@foot.dev',
-      phone: '+44 (881) 245 65 65',
+        'https://admission.apsit.org.in/cloud/id/cloud/student/photos/20104/20104085.jpg',
+      name: 'Gulshan Yadav',
+      moodle: 20104085,
+      email: 'gulshan@duck.com',
+      phone: '+44 (452) 886 09 12',
     },
     {
       avatar:
-        'https://images.unsplash.com/photo-1630841539293-bd20634c5d72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
-      name: 'Jeremy Footviewer',
-      moodle: 20104093,
-      email: 'jeremy@foot.dev',
-      phone: '+44 (881) 245 65 65',
+        'https://admission.apsit.org.in/cloud/id/cloud/student/photos/20104/20104002.jpg',
+
+      name: 'Vaishnavi Shinde',
+      moodle: 20104002,
+      email: 'gulshan@duck.com',
+      phone: '+44 (934) 777 12 76',
     },
     {
       avatar:
-        'https://images.unsplash.com/photo-1630841539293-bd20634c5d72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
-      name: 'Jeremy Footviewer',
-      moodle: 20104093,
-      email: 'jeremy@foot.dev',
-      phone: '+44 (881) 245 65 65',
+        'https://admission.apsit.org.in/cloud/id/cloud/student/photos/20104/20104045.jpg',
+
+      name: 'Gandharvi Walavekar',
+      moodle: 20104045,
+      email: 'gulshan@duck.com',
+      phone: '+44 (667) 341 45 22',
     },
     {
       avatar:
-        'https://images.unsplash.com/photo-1630841539293-bd20634c5d72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
-      name: 'Jeremy Footviewer',
-      moodle: 20104093,
-      email: 'jeremy@foot.dev',
-      phone: '+44 (881) 245 65 65',
+        'https://admission.apsit.org.in/cloud/id/cloud/student/photos/20104/20104085.jpg',
+      name: 'Gulshan Yadav',
+      moodle: 20104085,
+      email: 'gulshan@duck.com',
+      phone: '+44 (452) 886 09 12',
     },
     {
       avatar:
-        'https://images.unsplash.com/photo-1630841539293-bd20634c5d72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
-      name: 'Jeremy Footviewer',
-      moodle: 20104093,
-      email: 'jeremy@foot.dev',
-      phone: '+44 (881) 245 65 65',
+        'https://admission.apsit.org.in/cloud/id/cloud/student/photos/20104/20104002.jpg',
+
+      name: 'Vaishnavi Shinde',
+      moodle: 20104002,
+      email: 'gulshan@duck.com',
+      phone: '+44 (934) 777 12 76',
     },
     {
       avatar:
-        'https://images.unsplash.com/photo-1630841539293-bd20634c5d72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
-      name: 'Jeremy Footviewer',
-      moodle: 20104093,
-      email: 'jeremy@foot.dev',
-      phone: '+44 (881) 245 65 65',
-    },
-    {
-      avatar:
-        'https://images.unsplash.com/photo-1630841539293-bd20634c5d72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80',
-      name: 'Jeremy Footviewer',
-      moodle: 20104093,
-      email: 'jeremy@foot.dev',
-      phone: '+44 (881) 245 65 65',
+        'https://admission.apsit.org.in/cloud/id/cloud/student/photos/20104/20104045.jpg',
+
+      name: 'Gandharvi Walavekar',
+      moodle: 20104045,
+      email: 'gulshan@duck.com',
+      phone: '+44 (667) 341 45 22',
     },
   ],
 };

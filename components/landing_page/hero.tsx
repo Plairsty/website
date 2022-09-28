@@ -47,8 +47,8 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.smallerThan('xs')]: {
       flex: 1,
     },
-    border: '1px solid blue',
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    transition: 'all 0.5s ease',
   },
 
   image: {

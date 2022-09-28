@@ -65,6 +65,7 @@ const AuthenticationImage = () => {
       .then((res) => res.text())
       .then((data) => {
         try {
+          console.log(data);
           login(
             JSON.parse(data)['access_token'],
             JSON.parse(data)['refresh_token'],

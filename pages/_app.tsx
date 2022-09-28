@@ -48,7 +48,7 @@ function MyApp(props: AppProps & { colorScheme: ColorScheme }): JSX.Element {
       toggleColorScheme={toggleColorScheme}
     >
       <MantineProvider
-        theme={{ colorScheme, primaryColor: 'cyan' }}
+        theme={{ colorScheme, primaryColor: 'teal' }}
         withGlobalStyles
         withNormalizeCSS
       >
